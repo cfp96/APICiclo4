@@ -63,3 +63,5 @@ typings/
 # Cache used by TypeScript's incremental build
 *.tsbuildinfo
 src/datasources/mongo.datasource.ts
+
+package-lock.json
