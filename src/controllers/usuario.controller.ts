@@ -50,10 +50,22 @@ export class UsuarioController {
      let clave = this.servicioAuth.GenerarClave();
      let claveCifrada = this.servicioAuth.CifrarClave(clave);
      usuario.password = claveCifrada;
+     let tipo = '';
+     let destino = '';
+     let servicioWeb = '';
+     tipo = 'email'
      let p = await this.usuarioRepository.create(usuario);
 
      // Notificamos al usuario por correo
-    let destino = usuario.correo;
+     if (tipo == 'sms') {
+      destino = usuario.telefono;
+      servicioWeb = 'send_sms';
+     }
+     else {
+      destino = usuario.correo;
+      servicioWeb = 'send_email';
+     }
+
     // Notifiamos al usuario por telefono y cambiar la url por send_sms
         // let destino = usuario.telefono;
 
@@ -61,7 +73,7 @@ export class UsuarioController {
         let contenido = `Hola, ${usuario.nombre} ${usuario.apellidos} su contraseña en el portal es: ${clave}`
         axios({
           method: 'post',
-          url: 'http://localhost:5000/send_email', //Si quiero enviar por mensaje cambiar a send_sms
+          url: 'http://localhost:5000/' + servicioWeb, //Si quiero enviar por mensaje cambiar a send_sms
 
           headers: {
             'Accept': 'application/json',
