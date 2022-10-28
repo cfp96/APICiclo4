@@ -14,6 +14,7 @@ import {
   response
 } from '@loopback/rest';
 import axios from 'axios';
+import {configuracion} from '../config/config';
 import {Credenciales, Usuario} from '../models';
 import {UsuarioRepository} from '../repositories';
 import {AuthService} from '../services';
@@ -53,7 +54,7 @@ export class UsuarioController {
      let tipo = '';
      let destino = '';
      let servicioWeb = '';
-     tipo = 'email'
+     tipo = configuracion.tipoComunicacion;
      let p = await this.usuarioRepository.create(usuario);
 
      // Notificamos al usuario por correo
@@ -73,7 +74,7 @@ export class UsuarioController {
         let contenido = `Hola, ${usuario.nombre} ${usuario.apellidos} su contraseña en el portal es: ${clave}`
         axios({
           method: 'post',
-          url: 'http://localhost:5000/' + servicioWeb, //Si quiero enviar por mensaje cambiar a send_sms
+          url: configuracion.baseURL + servicioWeb, //Si quiero enviar por mensaje cambiar a send_sms
 
           headers: {
             'Accept': 'application/json',
