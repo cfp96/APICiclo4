@@ -1,7 +1,7 @@
 import { /* inject, */ BindingScope, injectable} from '@loopback/core';
 // Nuevas librerias
 import {repository} from '@loopback/repository';
-import {config} from '../config/config';
+import {configuracion} from '../config/config';
 import {Usuario} from '../models';
 import {UsuarioRepository} from '../repositories';
 const jwt = require('jsonwebtoken');
@@ -32,14 +32,14 @@ export class AuthService {
         correo: usuario.correo,
         nombre: usuario.nombre + " " + usuario.apellidos
       }
-    }, config.claveJWT)
+    }, configuracion.claveJWT)
 
     return token
   }
 
   validarTokenJWT(token: string) {
     try {
-      let datos = jwt.verify(token, config.claveJWT);
+      let datos = jwt.verify(token, configuracion.claveJWT);
       return datos;
     } catch (error) {
       return false;
