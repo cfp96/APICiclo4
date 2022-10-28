@@ -49,9 +49,9 @@ export class AuthService {
   //Autenticacion
   IdentificarPersona(correo: string, password: string) {
     try {
-      let p = this.usuarioRepository.findOne({where: {correo: correo, password: password}})
-      if (p) {
-        return p;
+      let user = this.usuarioRepository.findOne({where: {correo: correo, password: password}})
+      if (user) {
+        return user;
       }
       return false;
     } catch {

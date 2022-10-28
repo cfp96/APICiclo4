@@ -64,4 +64,4 @@ typings/
 *.tsbuildinfo
 src/datasources/mongo.datasource.ts
 
-package-lock.json
+src/config/config.ts
