@@ -29,6 +29,7 @@ export class UsuarioController {
 
   ) {}
 
+  @authenticate.skip()
   @post('/usuarios')
   @response(200, {
     description: 'Usuario model instance',
