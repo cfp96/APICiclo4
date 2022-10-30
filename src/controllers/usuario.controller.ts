@@ -207,17 +207,17 @@ export class UsuarioController {
   async login(
     @requestBody() credenciales: Credenciales
   ) {
-    let p = await this.servicioAuth.IdentificarPersona(credenciales.usuario, credenciales.password);
-    if (p) {
-      let token = this.servicioAuth.GenerarTokenJWT(p);
+    let user = await this.servicioAuth.IdentificarPersona(credenciales.usuario, credenciales.password);
+    if (user) {
+      let token = this.servicioAuth.GenerarTokenJWT(user);
 
       return {
         status: "success",
         data: {
-          nombre: p.nombre,
-          apellidos: p.apellidos,
-          correo: p.correo,
-          id: p.id
+          nombre: user.nombre,
+          apellidos: user.apellidos,
+          correo: user.correo,
+          id: user.id
         },
         token: token
       }
