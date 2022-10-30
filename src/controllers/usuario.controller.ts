@@ -214,10 +214,10 @@ export class UsuarioController {
       return {
         status: "success",
         data: {
-          nombre: p.nombre,
-          apellidos: p.apellidos,
-          correo: p.correo,
-          id: p.id
+          nombre: user.nombre,
+          apellidos: user.apellidos,
+          correo: user.correo,
+          id: user.id
         },
         token: token
       }
