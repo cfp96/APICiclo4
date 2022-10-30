@@ -207,9 +207,9 @@ export class UsuarioController {
   async login(
     @requestBody() credenciales: Credenciales
   ) {
-    let p = await this.servicioAuth.IdentificarPersona(credenciales.usuario, credenciales.password);
-    if (p) {
-      let token = this.servicioAuth.GenerarTokenJWT(p);
+    let user = await this.servicioAuth.IdentificarPersona(credenciales.usuario, credenciales.password);
+    if (user) {
+      let token = this.servicioAuth.GenerarTokenJWT(user);
 
       return {
         status: "success",
