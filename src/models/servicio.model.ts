@@ -1,4 +1,4 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {Cliente} from './cliente.model';
 import {Encomienda} from './encomienda.model';
 
@@ -14,7 +14,7 @@ export class Servicio extends Entity {
     type: 'date',
     required: true,
   })
-  fecha: string;
+  fecha: Date;
   @property({
     type: 'string',
     required: true,
