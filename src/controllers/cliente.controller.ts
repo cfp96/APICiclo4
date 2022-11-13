@@ -22,6 +22,7 @@ export class ClienteController {
     public clienteRepository : ClienteRepository,
   ) {}
 
+  @authenticate.skip()
   @post('/clientes')
   @response(200, {
     description: 'Cliente model instance',
