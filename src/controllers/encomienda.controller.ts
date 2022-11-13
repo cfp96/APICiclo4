@@ -22,6 +22,7 @@ export class EncomiendaController {
     public encomiendaRepository : EncomiendaRepository,
   ) {}
 
+  @authenticate.skip()
   @post('/encomiendas')
   @response(200, {
     description: 'Encomienda model instance',
